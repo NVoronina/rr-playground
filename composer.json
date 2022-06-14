@@ -1,0 +1,19 @@
+{
+
+  "require": {
+    "php": "^8.1",
+    "ext-pcntl": "*",
+    "nyholm/psr7": "1.5.0",
+    "spiral/goridge": "v3.1.2",
+    "spiral/roadrunner": "v2.10.0",
+    "spiral/roadrunner-cli": "v2.1.0",
+    "spiral/roadrunner-http": "v2.0.4",
+    "spiral/roadrunner-worker": "v2.1.5",
+    "twig/twig": "v3.3.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}

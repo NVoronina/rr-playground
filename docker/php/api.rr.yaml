@@ -1,0 +1,22 @@
+version: "2.7"
+
+server:
+  command: "php index.php"
+
+rpc:
+  listen: tcp://127.0.0.1:6002
+
+http:
+  address: 0.0.0.0:9091
+
+logs:
+  mode: production
+  channels:
+    http:
+      level: debug
+    server:
+      level: info
+      mode: raw
+    metrics:
+      level: error
+

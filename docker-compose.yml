@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+
+  php:
+    build:
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      - './:/code'
+    networks:
+      - code-network
+
+  nginx:
+    image: 'nginx:latest'
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+    volumes:
+      - './docker/nginx/public.conf:/etc/nginx/conf.d/public.conf'
+      - './docker/nginx/api.conf:/etc/nginx/conf.d/api.conf'
+    links:
+      - php
+    networks:
+      - code-network
+
+  mysql:
+    build:
+      context: ./docker/mysql
+    volumes:
+      - './docker/volumes/mysql:/var/lib/mysql'
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'catsdb'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - code-network
+
+networks:
+  code-network:
+    driver: bridge

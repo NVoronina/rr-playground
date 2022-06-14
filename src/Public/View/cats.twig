@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>{{ title }}</title>
+</head>
+<body class="page-body">
+<h1>{{ title }}</h1>
+<ul>
+{% for row in result %}
+    <li>Name: {{ result.name }}</li>
+{% endfor %}
+</ul>
+</body>

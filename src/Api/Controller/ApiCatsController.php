@@ -23,7 +23,7 @@ class ApiCatsController
         $this->worker->respond($this->response);
     }
 
-    public function post()
+    public function put()
     {
         // todo
         $data = json_encode((string)$this->request->getBody());

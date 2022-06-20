@@ -4,7 +4,7 @@ server:
   command: "php index.php"
 
 rpc:
-  listen: tcp://127.0.0.1:6002
+  listen: tcp://127.0.0.1:6001
 
 http:
   address: 0.0.0.0:9091

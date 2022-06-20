@@ -1,5 +1,5 @@
 <?php
-namespace App\Public\Repository;
+namespace App\Repository;
 
 class CatsRepository
 {
@@ -7,7 +7,7 @@ class CatsRepository
 
     public function __construct()
     {
-        $this->db = new \PDO('mysql:host=mysql;dbname=cats', 'user', 'password');
+        $this->db = new \PDO('mysql:host=mysql;dbname=catsdb', 'user', 'password');
     }
 
     public function getAll(): array

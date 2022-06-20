@@ -1,0 +1,10 @@
+body {
+    background: lightgoldenrodyellow;
+}
+img {
+    height: 2em;
+}
+li {
+    background: white;
+    list-style-type: none;
+}

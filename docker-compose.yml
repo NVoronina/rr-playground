@@ -18,16 +18,16 @@ services:
     volumes:
       - './docker/nginx/public.conf:/etc/nginx/conf.d/public.conf'
       - './docker/nginx/api.conf:/etc/nginx/conf.d/api.conf'
+      - './:/code'
     links:
       - php
     networks:
       - code-network
 
   mysql:
-    build:
-      context: ./docker/mysql
+    image: mysql:8
     volumes:
-      - './docker/volumes/mysql:/var/lib/mysql'
+      - ./docker/mysql/dump.sql:/docker-entrypoint-initdb.d/dump.sql
     ports:
       - '3306:3306'
     environment:

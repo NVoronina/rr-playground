@@ -1,5 +1,5 @@
 <?php
-include_once 'vendor/autoload.php';
+include_once '../vendor/autoload.php';
 
 use Spiral\RoadRunner;
 use Nyholm\Psr7;
@@ -16,11 +16,11 @@ while ($req = $worker->waitRequest()) {
         $_GET = $req->getQueryParams() ?? [];
         $_REQUEST = array_merge($_POST, $_GET, $_COOKIE);
 
-        $invokedClass = new \App\Controller\Cats($worker, $req);
-        \Slimex\Kernel::handleRequest($invokedClass, $action);
+        $invokedClass = new \App\Api\Controller\ApiCatsController($worker, $req, new Psr7\Response());
+        $method = strtolower($req->getMethod());
+        $invokedClass->$method();
     } catch (\Throwable $e) {
-        \Slimex\LogRegistry::cliDefaultAndConsoleLogger()->crit($e->getMessage(), \Slimex\CommonHelper::getErrorContext($e));
-        $worker->getWorker()->error((string)$e);
+        $worker->getWorker()->error($e->getMessage());
     }
 }
 

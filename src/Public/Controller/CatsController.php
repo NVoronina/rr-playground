@@ -21,9 +21,10 @@ class CatsController
     public function get(): void
     {
         $errors = [];
+        // example for set cookie with errors and remove them
         if (isset($_COOKIE['errors']) && $_COOKIE['errors'] !== '') {
             $errors = explode('.', $_COOKIE['errors']);
-            $this->response->withAddedHeader('Set-Cookie', 'errors=');
+            $this->response = $this->response->withAddedHeader('Set-Cookie', 'errors=');
         }
         $this->response->getBody()->write($this->getHtml(
             'cats.twig',

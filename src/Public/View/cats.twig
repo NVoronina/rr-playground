@@ -9,16 +9,21 @@
 <h1>{{ title }}</h1>
 <ul>
 {% for row in result %}
-    <li><img src="images/cat.png"/>Name: {{ row.name }}</li>
+    <li><img src="images/cat.png"/>Name: {{ row.name }} Description: {{ row.description }}</li>
 {% endfor %}
 </ul>
-<form id="add_cat" method="post">
-    <h3>Add cat</h3>
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" required/>
-    {% if errors.nameExistCat %}
+
+{% for error in errors %}
+    {% if error == 'nameExistCat' %}
         <span class="error">Name has prohibited symbols</span>
     {% endif %}
+{% endfor %}
+<form id="add_cat" method="post">
+    <h3>Add cat</h3>
+
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required/>
+
     <label for="type">Type</label>
     <input type="text" id="type" name="type"/>
 

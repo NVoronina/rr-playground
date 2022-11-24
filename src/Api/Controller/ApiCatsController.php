@@ -23,11 +23,21 @@ class ApiCatsController
         $this->worker->respond($this->response);
     }
 
-    public function put()
+    /**
+     * Method update cat description by id
+     *
+     * @throws \JsonException
+     */
+    public function put(): void
     {
-        // todo
-        $data = json_encode((string)$this->request->getBody());
-        $this->response->getBody()->write($data);
+        // get input data. It is equals to php://input
+        $data = json_decode((string)$this->request->getBody());
+
+        $data = (new CatsRepository())->update(
+            $data->id,
+            $data->description,
+        );
+        $this->response->getBody()->write(json_encode($data));
         $this->worker->respond($this->response);
     }
 }

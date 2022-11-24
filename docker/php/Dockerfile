@@ -5,7 +5,9 @@ RUN \
 	apt-get -y update && \
     apt-get -y install git && \
     docker-php-ext-install mysqli pdo pdo_mysql sockets pcntl \
-    && mkdir /code
+    && mkdir /code \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug
 
 COPY --from=rr /usr/bin/rr /usr/bin/rr
 #COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

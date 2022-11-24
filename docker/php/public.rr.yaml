@@ -2,21 +2,22 @@ version: "2.7"
 
 server:
   command: "php index.php"
+  env:
+    - XDEBUG_SESSION: 1
+    - PHP_IDE_CONFIG: "serverName=platform"
 
 rpc:
   listen: tcp://127.0.0.1:6002
 
 http:
   address: 0.0.0.0:9092
+  pool:
+    num_workers: 2
+#    debug: true
 
 logs:
-  mode: production
-  channels:
-    http:
-      level: debug
-    server:
-      level: info
-      mode: raw
-    metrics:
-      level: error
+  mode: development
+  level: warn
+  file_logger_options:
+    log_output: '../logs/rr_public.log'
 
